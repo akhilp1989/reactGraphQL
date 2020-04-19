@@ -12,7 +12,7 @@ var config={
     measurementId: "G-3G8TG5TWZ5"
   };
 
-  export const createUserProfileDocument=async (userAuth, addtionalDetails )=>{
+  export const createUserProfileDocument= async (userAuth, addtionalDetails )=>{
     if(!userAuth)return
     const userRef=firestore.doc(`users/${userAuth.uid}`);
     const snapShot=await userRef.get();

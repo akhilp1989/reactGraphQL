@@ -9,8 +9,8 @@ const formInput=(props)=>{
             <label className='form-label'>{props.label}</label>
             :null
         }
-        <input className='form-input'  placeholder={props.label} required={props.required}
-        onChange={props.changeHandler} 
+        <input className='form-input' name={props.name} type={props.type} placeholder={props.label} required={props.required}
+        onChange={props.onChange} 
         />
        
         </div>    

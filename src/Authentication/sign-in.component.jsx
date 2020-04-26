@@ -25,7 +25,7 @@ class signIn extends Component {
         catch (err){
             alert(err.message)
         }
-       
+       console.log(this.state)
     }
     changeHandler=(event)=>{
         const {name,value}=event.target

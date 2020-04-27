@@ -4,8 +4,10 @@ import './header.styles.scss'
 import {ReactComponent as Logo } from '../../images/header.svg'
 import {Link} from 'react-router-dom'
 import {auth} from '../../FireBase/firebase.utils'
+import CartIcon from '../CartIcon/cart-icon.component'
+import CartDropDown from '../CartDropDown/cart-dropDown.component'
 
-const Header = ({ loggedInUser }) => {
+const Header = ({ loggedInUser,showCart }) => {
     var loggedUser=''
    if(loggedInUser){
       //console.log('Logged In user exists')
@@ -42,15 +44,18 @@ const Header = ({ loggedInUser }) => {
             </Link>
             
               {loggedUser}
-            
+              <CartIcon />
           </div>
+          {showCart ? (<CartDropDown />):null}
+          
         </div>
       );
       
 }
   const mapStateToProps = state => ({
-      
-    loggedInUser: state.user.currentUser
+      loggedInUser: state.user.currentUser,
+      showCart:state.cart.show
+
     
   });
   

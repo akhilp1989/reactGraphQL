@@ -6,11 +6,11 @@ import {Link} from 'react-router-dom'
 import {auth} from '../../FireBase/firebase.utils'
 
 const Header = ({ loggedInUser }) => {
-    let loggedUser=''
+    var loggedUser=''
    if(loggedInUser){
-      // console.log('Logged In user exists')
+      //console.log('Logged In user exists')
        if(loggedInUser.id){
-          // console.log('LoggedInUser.user-',loggedInUser.id)
+           console.log('LoggedInUser.user-',loggedInUser.id)
            loggedUser= <div className='option' onClick={() => auth.signOut()}>
            SIGN OUT
          </div> 
@@ -23,8 +23,8 @@ const Header = ({ loggedInUser }) => {
        }
    }
    else{
-      // console.log('No user logged in')
-    loggedUser=<Link className='option' to='/signin'>
+       //console.log('No user logged in')
+    loggedUser=<Link className='option' to='/signn'>
     SIGN IN
   </Link>
    }

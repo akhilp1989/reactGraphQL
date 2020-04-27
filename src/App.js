@@ -42,13 +42,20 @@ class App extends Component {
     this.unsubscribeFromAuth()
   }
   render(){
+   let loggedInUser=null
+   if(this.props.currentUser){
+     if(this.props.currentUser.user){
+       loggedInUser=this.props.currentUser
+     }
+     else loggedInUser=null
+   }
     return (
       <div>
         <Header  />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/shop' component= {ShopPage} />
-          <Route exact path='/signin' component={SignInUp} />
+          <Route exact path='/signin' render={()=>loggedInUser ?(<Redirect to ='/' />):(<SignInUp />)} />
         </Switch>
       
       </div>
@@ -56,9 +63,12 @@ class App extends Component {
   }
   
 }
+const mapStateToProps =state =>({
+  currentUser:state.user.currentUser
+})
 
 const mapDispatchToProps = dispatch=>({
   setCurrentUser:user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

@@ -14,7 +14,7 @@ const dropDownReducer=(state=INITIAL_STATE,action)=>{
             case cartActionConstants.ADD_ITEM:
             return{
                 ...state,
-               cartItems:addCartItems(state.cartItems,action.payload)   
+               cartItems:addCartItems(state.cartItems,action.payload)
             }
         default:
             return state;

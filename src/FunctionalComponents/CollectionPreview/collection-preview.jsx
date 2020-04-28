@@ -8,7 +8,7 @@ const collectionPreview =(props)=>{
             <h1 className='title'>{props.title.toUpperCase()}</h1>
             <div className='preview'>
             {props.items.slice(0,4).map(item=>(
-                <CollectionItem key={item.id} {...item}/>
+                <CollectionItem key={item.id} item={item}/>
             ))}
             
             </div>

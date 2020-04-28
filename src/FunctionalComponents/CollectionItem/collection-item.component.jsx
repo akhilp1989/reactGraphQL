@@ -5,19 +5,21 @@ import {connect} from 'react-redux';
 import {addCartItem} from '../../Redux/Cart/cart.actions'
 
 
-const collectionItem=(props)=>{
-   // console.log(props)
+const collectionItem=({ item, addCartItem })=>{
+    const { name, price, imageUrl } = item;
+   //console.log(item)
+   
     return(
         <div className='collection-item'>
             <div className='image'
             style={{
-                backgroundImage:`url(${props.item.imageUrl})`
+                backgroundImage:`url(${imageUrl})`
             }}/>
             <div className='collection-footer'>
-            <span className='name'>{props.item.name}</span>
-            <span className='price'>{props.item.price}</span>
+            <span className='name'>{name}</span>
+            <span className='price'>{price}</span>
             </div>
-            <Button onClick={(item)=>props.addCartItem(item)}
+            <Button onClick={() =>addCartItem(item)}
             className ='custom-button' inverted >Add To Cart</Button>
 
            

@@ -1,4 +1,5 @@
 import { cartActionConstants } from "./cartActionConstants";
+import { addCartItems } from './cart.utils'
 const INITIAL_STATE={
     show:false,
     cartItems:[]
@@ -13,7 +14,7 @@ const dropDownReducer=(state=INITIAL_STATE,action)=>{
             case cartActionConstants.ADD_ITEM:
             return{
                 ...state,
-               cartItems:[...state.cartItems,action.payload]
+               cartItems:addCartItems(state.cartItems,action.payload)   
             }
         default:
             return state;

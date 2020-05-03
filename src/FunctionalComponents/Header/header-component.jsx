@@ -6,16 +6,25 @@ import {Link} from 'react-router-dom'
 import {auth} from '../../FireBase/firebase.utils'
 import CartIcon from '../CartIcon/cart-icon.component'
 import CartDropDown from '../CartDropDown/cart-dropDown.component'
+import{selectShowCart} from '../../Redux/Cart/cart.selector'
+import {selectCurrentUser} from '../../Redux/User/user.selector'
+
 
 const Header = ({ loggedInUser,showCart }) => {
-    var loggedUser=''
+  //console.log(showCart)
+    let loggedUser=''
    if(loggedInUser){
       //console.log('Logged In user exists')
        if(loggedInUser.id){
-           console.log('LoggedInUser.user-',loggedInUser.id)
-           loggedUser= <div className='option' onClick={() => auth.signOut()}>
+           //console.log('LoggedInUser.user-',loggedInUser.id)
+           loggedUser= <div>
+            
+          <div className='option' onClick={() => auth.signOut()}>
            SIGN OUT
          </div> 
+         
+           </div>
+           
        }
        else{
         //console.log('LoggedInUser.After-',loggedInUser.user)
@@ -46,15 +55,15 @@ const Header = ({ loggedInUser,showCart }) => {
               {loggedUser}
               <CartIcon />
           </div>
-          {showCart ? (<CartDropDown />):null}
+          {showCart ? <CartDropDown /> :null }
           
         </div>
       );
       
 }
   const mapStateToProps = state => ({
-      loggedInUser: state.user.currentUser,
-      showCart:state.cart.show
+      loggedInUser: selectCurrentUser(state),
+      showCart:selectShowCart(state)
 
     
   });

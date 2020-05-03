@@ -7,6 +7,8 @@ import SignInUp from './Authentication/signIn-Up.component'
 import { auth,createUserProfileDocument } from  './FireBase/firebase.utils'
 import {setCurrentUser} from './Redux/User/user.action'
 import {connect} from 'react-redux'
+import {selectCurrentUser} from './Redux/User/user.selector'
+import CheckOutPage from './FunctionalComponents/CheckOut/checkoutPage.component'
 
 import './App.css';
 
@@ -56,6 +58,7 @@ class App extends Component {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/shop' component= {ShopPage} />
           <Route exact path='/signin' render={()=>loggedInUser ?(<Redirect to ='/' />):(<SignInUp />)} />
+          <Route exact path='/checkout' component= {CheckOutPage} />
         </Switch>
       
       </div>
@@ -64,7 +67,7 @@ class App extends Component {
   
 }
 const mapStateToProps =state =>({
-  currentUser:state.user.currentUser
+  currentUser:selectCurrentUser(state)
 })
 
 const mapDispatchToProps = dispatch=>({

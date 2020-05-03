@@ -1,4 +1,6 @@
 export  const cartActionConstants =({
     TOGGLE_SHOW_CART:'TOGGLE_SHOW_CART',
-    ADD_ITEM:'ADD_ITEM'
+    ADD_ITEM:'ADD_ITEM',
+    REMOVE_ITEM:'REMOVE_ITEM',
+    CLEAR_ITME_FROM_CART:'CLEAR_ITME_FROM_CART'
 })

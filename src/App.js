@@ -4,11 +4,13 @@ import {Route,Switch,Redirect} from 'react-router-dom'
 import ShopPage from './ClassComponents/ShopComponent/shop.component'
 import Header from './FunctionalComponents/Header/header-component'
 import SignInUp from './Authentication/signIn-Up.component'
-import { auth,createUserProfileDocument } from  './FireBase/firebase.utils'
+import { auth,createUserProfileDocument,addCollectionAndDocuments } from  './FireBase/firebase.utils'
 import {setCurrentUser} from './Redux/User/user.action'
 import {connect} from 'react-redux'
 import {selectCurrentUser} from './Redux/User/user.selector'
 import CheckOutPage from './FunctionalComponents/CheckOut/checkoutPage.component'
+//import {selectCollectionsForPreview} from './Redux/ShopData/shopDataMap.selector'
+
 
 import './App.css';
 
@@ -18,24 +20,19 @@ class App extends Component {
  
 
   componentDidMount=()=>{
-   const{ setCurrentUser}=this.props
-    
+   const{ setCurrentUser}=this.props;
    this.unsubscribeFromAuth= auth.onAuthStateChanged( async user=>{
      if(user){
       const userRef= await createUserProfileDocument(user)
       userRef.onSnapshot(snapShot=>{
-       
          setCurrentUser({
             id:snapShot.id,
             ...snapShot.data()
-          })
-       
+          })   
       })
-    
      }
      setCurrentUser({user})
-    
-     
+     //addCollectionAndDocuments('collections',collectionsArray.map((({title,items})=>({title:title,items:items}))))
     })
    
   }
@@ -67,7 +64,8 @@ class App extends Component {
   
 }
 const mapStateToProps =state =>({
-  currentUser:selectCurrentUser(state)
+  currentUser:selectCurrentUser(state),
+  //collectionsArray:selectCollectionsForPreview(state)
 })
 
 const mapDispatchToProps = dispatch=>({

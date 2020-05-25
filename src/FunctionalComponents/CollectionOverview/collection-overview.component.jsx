@@ -8,7 +8,7 @@ import { selectCollectionsForPreview } from '../../Redux/ShopData/shopDataMap.se
 
 const CollectionsOverview = ({ collections }) => {
   // console.log(Object.values(collections).find(x=>x.id===1))
-  // console.log((collections))
+  //console.log('Hello->',collections)
  return (
     <div className='collections-overview'>
       {collections.map(({ id, ...otherCollectionProps }) => (

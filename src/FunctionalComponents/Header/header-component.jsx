@@ -3,15 +3,16 @@ import {connect} from 'react-redux'
 import './header.styles.scss'
 import {ReactComponent as Logo } from '../../images/header.svg'
 import {Link} from 'react-router-dom'
-import {auth} from '../../FireBase/firebase.utils'
+
 import CartIcon from '../CartIcon/cart-icon.component'
 import CartDropDown from '../CartDropDown/cart-dropDown.component'
 import{selectShowCart} from '../../Redux/Cart/cart.selector'
 import {selectCurrentUser} from '../../Redux/User/user.selector'
+import { signOutStart } from '../../Redux/User/user.action';
 
 
-const Header = ({ loggedInUser,showCart }) => {
-  //console.log(showCart)
+const Header = ({ loggedInUser,showCart,signOut }) => {
+ // console.log('LoggedIN->',loggedInUser)
     let loggedUser=''
    if(loggedInUser){
       //console.log('Logged In user exists')
@@ -19,7 +20,7 @@ const Header = ({ loggedInUser,showCart }) => {
            //console.log('LoggedInUser.user-',loggedInUser.id)
            loggedUser= <div>
             
-          <div className='option' onClick={() => auth.signOut()}>
+          <div className='option' onClick={signOut}>
            SIGN OUT
          </div> 
          
@@ -35,7 +36,7 @@ const Header = ({ loggedInUser,showCart }) => {
    }
    else{
        //console.log('No user logged in')
-    loggedUser=<Link className='option' to='/signn'>
+    loggedUser=<Link className='option' to='/signin'>
     SIGN IN
   </Link>
    }
@@ -64,8 +65,11 @@ const Header = ({ loggedInUser,showCart }) => {
   const mapStateToProps = state => ({
       loggedInUser: selectCurrentUser(state),
       showCart:selectShowCart(state)
-
-    
+      
   });
+
+  const mapDispatchToProps =dispatch=>({
+    signOut:()=>dispatch(signOutStart())
+  })
   
-  export default connect(mapStateToProps)(Header);
+  export default connect(mapStateToProps,mapDispatchToProps)(Header);

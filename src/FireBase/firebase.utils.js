@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import "firebase/auth";
+
 var config={
     apiKey: "AIzaSyCvZB7VPetZOoi2OTD48ZNLQxE6qGvJ1fw",
     authDomain: "graphqlproject-5f8ed.firebaseapp.com",
@@ -73,11 +74,20 @@ var config={
   //console.log(auth);
   export const firestore=firebase.firestore();
   //console.log(firestore)
-   const provider=new firebase.auth.GoogleAuthProvider();
-   provider.setCustomParameters({prompt:'select_account'});
+  export  const googleProvider=new firebase.auth.GoogleAuthProvider();
+  googleProvider.setCustomParameters({prompt:'select_account'});
    export const signInWithGoogle=()=>{
     
-    return  auth.signInWithPopup(provider);
+    return  auth.signInWithPopup(googleProvider);
+    }
+
+    export const getCurrentUser=()=>{
+      return new Promise((resolve,reject)=>{
+        const unsubscribe=auth.onAuthStateChanged(userAuth=>{
+          unsubscribe();
+          resolve(userAuth)
+        },reject)
+      })
     }
   
   export default firebase;

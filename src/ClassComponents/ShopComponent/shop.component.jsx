@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React,{useEffect} from 'react'
 import {Route} from 'react-router-dom'
 //import CollectionPage from '../../FunctionalComponents/Collection/collectionPage.component'
 //import{firestore,convertCollectionsSnapshotToMap} from '../../FireBase/firebase.utils'
@@ -10,15 +10,10 @@ import CollectionsOverviewContainer from '../../FunctionalComponents/CollectionO
 import CollectionPageContainer from '../../FunctionalComponents/Collection/collection.container';
 //import collectionOverviewComponent from '../../FunctionalComponents/CollectionOverview/collection-overview.component';
 
-class shopComponent extends Component {
-    componentDidMount(){
-       const { fetchCollectionsStart } = this.props;
-        fetchCollectionsStart();
-     
-      }
-      render() {
-        const { match } = this.props;
-    
+const ShopComponent =({fetchCollectionsStart,match})=> {
+         useEffect(()=>{
+      fetchCollectionsStart()
+     },[fetchCollectionsStart])
         return (
           <div className='shop-page'>
             <Route
@@ -33,12 +28,12 @@ class shopComponent extends Component {
           </div>
         );
       }
-    }
+    
 const mapDispatchToProps = dispatch => ({
     fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
   });
   
 
-export default connect(null,mapDispatchToProps)(shopComponent)
+export default connect(null,mapDispatchToProps)(ShopComponent)
 
 

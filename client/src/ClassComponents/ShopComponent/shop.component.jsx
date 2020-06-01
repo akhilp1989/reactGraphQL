@@ -1,12 +1,12 @@
 import React,{useEffect} from 'react'
 import {Route} from 'react-router-dom'
-import CollectionPage from '../../FunctionalComponents/Collection/collectionPage.component'
+import CollectionPageContainer from '../../FunctionalComponents/Collection/collection.container'
 //import{firestore,convertCollectionsSnapshotToMap} from '../../FireBase/firebase.utils'
 import {connect} from 'react-redux'
 //import {updateCollections} from '../../Redux/ShopData/shopData.actions'
 //import WithSpinner from '../../FunctionalComponents/WithSpinner/withspinner.component'
 import { fetchCollectionsStart } from '../../Redux/ShopData/shopData.actions';
-import CollectionOverviewComponent from '../../FunctionalComponents/CollectionOverview/collection-overview.component';
+import {default as CollectionOverview} from '../../FunctionalComponents/CollectionOverview/collection-overview.container';
 
 //import collectionOverviewComponent from '../../FunctionalComponents/CollectionOverview/collection-overview.component';
 
@@ -17,11 +17,11 @@ const ShopComponent =({match})=> {
             <Route
               exact
               path={`${match.path}`}
-              component={CollectionOverviewComponent}
+              component={CollectionOverview}
             />
             <Route
               path={`${match.path}/:collectionId`}
-              component={CollectionPage}
+              component={CollectionPageContainer}
             />
           </div>
         );

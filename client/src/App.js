@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import HomePage from './FunctionalComponents/HomePage/homepage-component'
 import {Route,Switch,Redirect} from 'react-router-dom'
 import ShopPage from './ClassComponents/ShopComponent/shop.component'
-import Header from './FunctionalComponents/Header/header-component'
+import HeaderContainer from './FunctionalComponents/Header/header.container'
 import SignInUp from './Authentication/signIn-Up.component'
 //import { auth,createUserProfileDocument,addCollectionAndDocuments } from  './FireBase/firebase.utils'
 import {checUserSession} from './Redux/User/user.action'
@@ -33,7 +33,7 @@ const App = ({currentUser,checUserSession})=>{
    //console.log('user->',this.props.currentUser)
     return (
       <div>
-        <Header  />
+        <HeaderContainer  />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route  path='/shop' component= {ShopPage} />

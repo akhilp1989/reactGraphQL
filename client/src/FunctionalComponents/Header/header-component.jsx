@@ -4,9 +4,9 @@ import './header.styles.scss'
 import {ReactComponent as Logo } from '../../images/header.svg'
 import {Link} from 'react-router-dom'
 
-import CartIcon from '../CartIcon/cart-icon.component'
+import CartIconContainer from '../CartIcon/cart-icon.container'
 import CartDropDown from '../CartDropDown/cart-dropDown.component'
-import{selectShowCart} from '../../Redux/Cart/cart.selector'
+
 import {selectCurrentUser} from '../../Redux/User/user.selector'
 import { signOutStart } from '../../Redux/User/user.action';
 
@@ -54,7 +54,7 @@ const Header = ({ loggedInUser,showCart,signOut }) => {
             </Link>
             
               {loggedUser}
-              <CartIcon />
+              <CartIconContainer />
           </div>
           {showCart ? <CartDropDown /> :null }
           
@@ -64,7 +64,7 @@ const Header = ({ loggedInUser,showCart,signOut }) => {
 }
   const mapStateToProps = state => ({
       loggedInUser: selectCurrentUser(state),
-      showCart:selectShowCart(state)
+
       
   });
 

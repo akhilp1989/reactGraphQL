@@ -17,13 +17,14 @@ const checkOutItem=({cartItem,clearItem,addCartItem})=>{
             <div className='arrow' onClick={()=>addCartItem(cartItem)}>&#10095;</div>
             </span>
             <span className='price'>{price}</span>
-            <div className='remove-button' onClick={()=>removeItem(cartItem)} >&#10005;</div>
+            <div className='remove-button' onClick={()=>clearItem(cartItem)} >&#10005;</div>
         </div>
     )
 }
 const mapDispatchToProps =dispatch =>({
     clearItem:(item)=>dispatch(removeItem(item)),
-    addCartItem:(item)=>dispatch(addCartItem(item))
+    addCartItem:(item)=>dispatch(addCartItem(item)),
+   // removeItem:(item)=>dispatch(removeItem(item))
       
 })
 

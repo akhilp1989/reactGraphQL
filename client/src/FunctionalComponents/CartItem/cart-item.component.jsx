@@ -14,5 +14,5 @@ const cartItem=({item:{imageUrl,name,price,quantity}})=>{
     )
 
 }
-
-export default cartItem
+//added React.memo() for memoization so that the whole component doesnt re-render when item changes
+export default React.memo(cartItem)

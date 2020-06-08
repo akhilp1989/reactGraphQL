@@ -10,6 +10,7 @@ import {connect} from 'react-redux'
 import {selectCurrentUser} from './Redux/User/user.selector'
 import { createStructuredSelector } from 'reselect';
 import './App.css';
+//import ErrorBoundary from './ClassComponents/Error-Bound/error-bound.component'
 //import CheckOutPage from './FunctionalComponents/CheckOut/checkoutPage.component'
 //import {selectCollectionsForPreview} from './Redux/ShopData/shopDataMap.selector'
 const HomePage=lazy(()=>import('./FunctionalComponents/HomePage/homepage-component'));
@@ -40,12 +41,14 @@ const App = ({currentUser,checUserSession})=>{
         <Header  />
         
         <Switch>
-          <Suspense fallback={<div>....Loading</div>}>
-          <Route exact path='/' component={HomePage} />
-          <Route  path='/shop' component= {ShopPage} />
-          <Route  path='/signin' render={()=>currentUser ?(<Redirect to ='/' />):(<SignInUp />)} />
-          <Route  path='/checkout' component= {CheckOutPage} />
-          </Suspense>
+         
+            <Suspense fallback={<div>....Loading</div>}>
+              <Route exact path='/' component={HomePage} />
+              <Route  path='/shop' component= {ShopPage} />
+              <Route  path='/signin' render={()=>currentUser ?(<Redirect to ='/' />):(<SignInUp />)} />
+              <Route  path='/checkout' component= {CheckOutPage} />
+            </Suspense>
+         
         </Switch>
       
       </div>
